@@ -15,7 +15,6 @@ use App\Http\Requests\SigningRequest;
 
 class AuthController extends Controller
 {
-
     public function getSignup(){
         return view('auth/signup');
     }

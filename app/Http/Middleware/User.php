@@ -36,7 +36,7 @@ class User
     {
         if(!$this->auth->check()) {
             $this->auth->logout();
-            return redirect('auth/login');
+            return redirect('auth/signin');
         }
         return $next($request);
     }

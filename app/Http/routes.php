@@ -11,7 +11,7 @@ Route::group([], function () {
 });
 
 /**
- * Admin
+ * User routes
  */
 //Route::controller('admin/dashboard'   , 'Admin\DashboardController');
 
@@ -24,10 +24,11 @@ Route::group([
     Route::controller('profile'  , 'ProfileController');
     Route::controller('friend'   , 'FriendController');
     Route::controller('status'   , 'StatusController');
+    Route::controller('timeline' , 'TimelineController');
 });
 
 /**
- * User
+ * Admin routes
  */
 //Route::controller('admin/dashboard'   , 'Admin\DashboardController');
 

@@ -17,23 +17,25 @@ class StatusController extends UserBaseController {
     public function postPost(StatusRequest $request,StatusService $statusService)
     {
         $statusService->createStatus($request->input('status'));
-        return redirect('home')
+        return redirect()
+            ->back()
             ->with('info', 'Status posted');
     }
 
-    public function postReply(ReplyStatusRequest $request, $statusId)
+    public function postReply(ReplyStatusRequest $request,StatusService $statusService, $statusId)
     {
-        $status = Status::notReply()->find($statusId);
+        $status = $statusService->getById($statusId);
 
-        if(!$status){
-            return redirect()->route('home');
+        if(!$status)
+        {
+            return redirect('home');
         }
         if(!$this->user->isFriendsWith($status->user) && $this->user->id !== $status->user->id){
-            return redirect()->route('home');
+            return redirect('home');
         }
 
         $reply = Status::create([
-            'body' => $request->input("reply"),
+            'body' => $request->input("reply")
         ])->user()->associate($this->user);
 
         $status->replies()->save($reply);

@@ -16,6 +16,28 @@ class UserService {
     }
 
     /**
+     * Get user by id
+     *
+     * @param Integer $id
+     * @return User
+     */
+    public function getById( $id )
+    {
+        return $this->user->find($id);
+    }
+
+    /**
+     * Get user by ids
+     *
+     * @param Integer $ids
+     * @return User
+     */
+    public function getByIds( $ids )
+    {
+        return $this->user->whereIn($ids)->get();
+    }
+
+    /**
      * Check user existing by first,last names
      *
      * @param String $username
@@ -33,9 +55,11 @@ class UserService {
             $firstName = $username;
             $lastName='';
         }
+
         return $this->user
                 ->where('first_name',$firstName)
-                ->orWhere('last_name',$lastName)
+                ->where('last_name',$lastName)
+                ->orWhere('username',$username)
                 ->first();
     }
 }
