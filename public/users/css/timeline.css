@@ -1,0 +1,54 @@
+.button-edit-del-cont{
+    display: inline-block;
+}
+.pull-right{
+    visibility: hidden;
+    transition: all .4s;
+    opacity: 0;
+    position: absolute;
+    right: 0px;
+    bottom: 5px;
+}
+
+.post-cont .first-messege{
+    top: 5px;
+}
+
+.media-body p,media-body h4{
+    text-overflow: ellipsis;
+}
+
+.post-cont{
+    position: relative;
+}
+.syatus-cont:hover + .first-messege{
+    visibility: visible;
+    opacity: 1;
+}
+.post-cont:hover > .pull-right{
+    visibility: visible;
+    opacity: 1;
+}
+
+.width-control{
+    max-width: 400px;
+}
+
+.file-icon{
+    padding-left: 8px;
+}
+
+input[type = 'file']{
+    display: inline-block
+}
+
+.remove-icon{
+    display: none;
+}
+.file-remove-icon{
+    display: inline-block
+}
+
+.file-icon:hover + .remove-icon{
+    display: inline-block
+}

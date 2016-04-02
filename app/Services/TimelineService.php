@@ -21,14 +21,16 @@ class TimelineService
      */
     public function getStatusReply($user, $userService)
     {
-       $user_status_data = [];
-       $middleArr = [];
-       $statuses = $this->status
-                    ->where('user_id', $user->id)
-                    ->orWhereIn('user_id', $user->friends()->lists('id'))
-                    ->where('parent_id',NULL)
-                    ->orderBy('id', 'desc')
-                    ->get();
+        $user_status_data = [];
+        $middleArr = [];
+        $statuses = $this->status
+                        ->where(function($query) use ($user){
+                            $query->where('user_id', $user->id);
+                            $query->orWhereIn('user_id', $user->friends()->lists('id'));
+                        })
+                        ->whereNull('parent_id')
+                        ->orderBy('id', 'desc')
+                        ->get();
         foreach($statuses as $status)
         {
             $daysSinceEpoch = Carbon::createFromTimestamp(strtotime($status['created_at']))->diffInDays();
@@ -37,9 +39,13 @@ class TimelineService
             $middleArr['id']               = $status['id'];
             $middleArr['body']             = $status['body'];
             $middleArr['created_at']       = Carbon::now()->subMinutes($daysSinceEpoch)->diffForHumans();
-            $middleArr['user']             = $userService->getById($status['user_id']);
+            $middleArr['user']             = $status->user;
 
-            $replies  = $this->status->where('parent_id',$status['id'])->get()->toArray();
+            $replies  = $this->status
+                    ->where('parent_id',$status['id'])
+                    ->get()
+                    ->toArray();
+
             foreach($replies as $reply)
             {
                 $middleArr['replies'][$reply['id']]['id']           = $reply['id'];
@@ -48,10 +54,9 @@ class TimelineService
                 $middleArr['replies'][$reply['id']]['likes']        = $this->like->where('user_id',$reply['user_id'])->get();
                 $middleArr['replies'][$reply['id']]['user']         = $userService->getById($reply['user_id']);
             }
-            $user_status_data [] = $middleArr;
+            $user_status_data[] = $middleArr;
             $middleArr = [];
         }
-//        dd($user_status_data);
         return $user_status_data;
     }
 }
