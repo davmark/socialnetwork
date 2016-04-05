@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\User\UserBaseController;
@@ -11,7 +10,14 @@ use Auth,Validator;
 
 class ProfileController extends UserBaseController
 {
-    public function getIndex($username){
+    /**
+     * Show user indx page
+     * 
+     * @param String $username
+     * @return view
+     */
+    public function getIndex($username)
+    {
         $user = User::where('username', $username)->first();
         if(!$user){
             abort(404);
@@ -24,10 +30,22 @@ class ProfileController extends UserBaseController
             ->with('statuses', $statuses)
             ->with('authUserIsFriend', $this->user->isFriendsWith($user));
     }
-
+    /**
+     * Show profile edit page
+     * 
+     * @return view
+     */
     public function getEdit(){
         return view('profile.edit');
     }
+
+    /**
+     * Update user profile data
+     * 
+     * @param UserProfileFormRequest $request
+     * @param ProfileService $profileService
+     * @return redirect
+     */
     public function postEdit(UserProfileFormRequest $request,ProfileService $profileService)
     {
         if($request->hasFile('img')){
@@ -38,7 +56,6 @@ class ProfileController extends UserBaseController
             'last_name' => $request->input('last_name'),
             'location' => $request->input('location'),
         ]);
-
         return redirect('user/profile/edit')
             ->with('info', 'Your profile has been updated');
     }

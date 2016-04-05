@@ -1,8 +1,7 @@
 <?php
 /**
- * Frontend
+ * Site frontend routes
  */
-
 Route::group([], function () {
     Route::get('/'   , 'HomeController@getIndex');
     Route::controller('home'   , 'HomeController');
@@ -14,13 +13,13 @@ Route::group([], function () {
  * User routes
  */
 //Route::controller('admin/dashboard'   , 'Admin\DashboardController');
-
 Route::group([
     'middleware' => 'User',
     'namespace'  => 'User',
     'prefix'     => 'user',
 ], function () {
     Route::controller('search'   , 'SearchController');
+    Route::controller('messages' , 'MessagesController');
     Route::controller('profile'  , 'ProfileController');
     Route::controller('friend'   , 'FriendController');
     Route::controller('status'   , 'StatusController');
@@ -30,8 +29,6 @@ Route::group([
 /**
  * Admin routes
  */
-//Route::controller('admin/dashboard'   , 'Admin\DashboardController');
-
 Route::group([
     'middleware' => 'Admin',
     'namespace'  => 'Admin',

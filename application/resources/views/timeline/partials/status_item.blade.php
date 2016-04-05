@@ -1,7 +1,7 @@
 <div class="media post-cont">
     <a class="pull-left" href="{{url('user/profile/index', ['username' => $status['user']->username])}}">
         <img class="media-object" alt="{{$status['user']->username}}"
-             src="@if($user->img) {{url()}}/users/imgs/thumbs/{{$user->img}} @else {{url()}}/users/defaultAvatar.png @endif">
+             src="@if($user->img) {{url()}}/files/users/imgs/thumbs/{{$user->img}} @else {{url()}}/users/defaultAvatar.png @endif">
     </a>
 
     <div class="media-body">

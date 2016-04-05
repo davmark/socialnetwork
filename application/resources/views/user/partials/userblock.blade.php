@@ -1,5 +1,5 @@
 <div class="media">
-    <a class="pull-left" href="{{url('profile/index', ['username' => $user->username])}}">
+    <a class="pull-left" href="{{url('user/profile/index', ['username' => $user->username])}}">
         <img class="media-object" alt="{{$user->getNameOrUsername()}}" src="@if($user->img) {{url()}}/users/imgs/thumbs/{{$user->img}} @else {{url()}}/users/defaultAvatar.png @endif">
 
     </a>

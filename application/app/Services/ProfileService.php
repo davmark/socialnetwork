@@ -9,16 +9,14 @@ class ProfileService {
 
     public function __construct()
     {
-        $this->imgPath      = public_path('users/imgs/');
-        $this->imgThumbPath = public_path('users/imgs/thumbs/');
-
-//        $this->imgPath      = 'users/imgs/';
-//        $this->imgThumbPath = 'users/imgs/thumbs/';
+        $this->imgPath      = base_path('../users/imgs/');
+        $this->imgThumbPath = base_path('../users/imgs/thumbs/');
     }
 
     public function uploadProfileImg($img,$user)
     {
         $imageName = $this->getImageName($img)['unique'];
+//        dd($this->imgPath.$imageName);
         $oldName = $user->img;
         if(!$oldName){
             Image::make($img)->save($this->imgPath.$imageName);

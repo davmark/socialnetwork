@@ -10,7 +10,7 @@ class StatusService extends BaseService
     private $status,$filePath;
     public function __construct(Status $status)
     {
-        $this->filePath = public_path('users/files/status/');
+        $this->filePath = base_path('../users/files/status/');
         $this->status   = $status;
     }
 
