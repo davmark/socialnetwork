@@ -23,11 +23,11 @@
             </div>
             <div class="form-group {{$errors->has('password') ? ' has-error' : ''}}">
                 {!! Form::label('password', 'Choose a password', ['class'=>'control-label']) !!}
-                {!! Form::text('password', NULL, ['class'=>'form-control']) !!}
+                {!! Form::password('password', ['class'=>'form-control']) !!}
             </div>
             <div class="form-group {{$errors->has('password') ? ' has-error' : ''}}">
                 {!! Form::label('password_confirmation', 'Confirm password', ['class'=>'control-label']) !!}
-                {!! Form::text('password_confirmation', NULL, ['class'=>'form-control']) !!}
+                {!! Form::password('password_confirmation', ['class'=>'form-control']) !!}
             </div>
         {!! Form::hidden('role', 'festival') !!}
             <div class="form-group">

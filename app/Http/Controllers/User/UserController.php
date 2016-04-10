@@ -7,6 +7,6 @@ class UserController extends UserBaseController
 {
     public function getIndex()
     {
-        return view('user/home.index');
+        return view('user/index');
     }
 }

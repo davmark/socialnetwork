@@ -30,4 +30,16 @@ class LoginRequest extends Request
             'password'  => 'required'
         ];
     }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'role.required' => 'Please select an existing user'
+        ];
+    }
 }

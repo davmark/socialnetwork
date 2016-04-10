@@ -1,16 +1,21 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
+
 use App\Http\Controllers\Controller;
 use App\Http\Services\AuthService;
-use App\Http\Services\UserService;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    /**
+     * 
+     * 
+     * @vars Auth::guard $user,$company,$festival
+     */
     private $user,$company,$festival;
+
     /**
      * Create a new authentication controller instance.
      *
@@ -18,8 +23,8 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->user = Auth::guard('user');
-        $this->company = Auth::guard('company');
+        $this->user     = Auth::guard('user');
+        $this->company  = Auth::guard('company');
         $this->festival = Auth::guard('festival');
     }
 
@@ -51,10 +56,9 @@ class AuthController extends Controller
     public function postLogin(LoginRequest $request, AuthService $authService)
     {
         $role = $request->get('role');
-        $loginMethod = $role.'Login';
-        if($authService->$loginMethod( $this->$role, $request->all() ));
-            return redirect()->back()->with('success','Successfully logged in !!!!');
-        return redirect ()->back()->withErrors('Something wet wrong.Pleas try again!!!');
+        if($this->$role->attempt($request->except('_token','role')))
+            return redirect($role)->with('success','Successfully logged in !!!!');
+        return back()->withErrors('Incorrect email or password');
     }
 
     /**
@@ -67,9 +71,29 @@ class AuthController extends Controller
     public function postRegister(RegisterRequest $request, AuthService $authService)
     {
         $role = $request->get('role');
+        $serviceNamespace = 'App\Http\Services\\'.ucfirst($role).'Service';
+        $service = \App::make($serviceNamespace);
         $registerMethod = $role.'Regiter';
-        if($authService->$registerMethod( $this->$role, $request->all()));
-            return redirect($role)->withErrors('Successfully registered!!!');
-        return redirect ()->back()->withErrors('Something wet wrong.Pleas try again!!!');
+        if($model = $authService->$registerMethod( $this->$role, $service, $request->except('_token','role')));
+        {
+            $this->$role->login($model);
+            return redirect($role)->with('success','Successfully registered!!!');
+        }
+        return back()->withErrors('Something wet wrong.Pleas try again!!!');
+    }
+
+    /**
+     * Registering user by role
+     * 
+     * @param AuthService $authService
+     * @param UserService $userService
+     * @return redirect
+     */
+    public function getLogout()
+    {
+        $this->user->logout();
+        $this->company->logout();
+        $this->festival->logout();
+        return redirect('auth/login');
     }
 }

@@ -1,11 +1,19 @@
 <?php
-
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model implements Authenticatable
 {
+    use \Illuminate\Auth\Authenticatable;
+    /**
+     * Set table name
+     *
+     * @var String $table 
+     */
+     protected $table = 'users';
+     
     /**
      * The attributes that are mass assignable.
      *
@@ -13,6 +21,7 @@ class User extends Authenticatable
      */
     protected $fillable =
     [
+        'username',
         'first_name',
         'last_name',
         'occupation',

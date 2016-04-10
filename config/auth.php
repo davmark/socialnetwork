@@ -42,27 +42,27 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'session',
             'provider' => 'users',
         ],
 
         'admin' => [
-            'driver' => 'token',
+            'driver' => 'session',
             'provider' => 'adminProvider',
         ],
 
         'user' => [
-            'driver' => 'token',
+            'driver' => 'session',
             'provider' => 'userProvider',
         ],
 
         'company' => [
-            'driver' => 'token',
+            'driver' => 'session',
             'provider' => 'companyProvider',
         ],
 
         'festival' => [
-            'driver' => 'token',
+            'driver' => 'session',
             'provider' => 'festivalProvider',
         ],
     ],
@@ -92,7 +92,7 @@ return [
         
         'adminProvider' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\Admin::class,
         ],
         
         'userProvider' => [

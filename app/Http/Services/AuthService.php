@@ -3,16 +3,17 @@ namespace App\Http\Services;
 
 class AuthService
 {
-    
     /**
      * Attempting User type before login
      * 
      * @param User $user
      * @param array $userData
      */
-    public function userLogin($user,$userData)
+    public function userRegiter($user,$service,$userData)
     {
-        return $user->attempt($userData);
+        $userData = $this->beforeSave($userData);
+        $createdUser = $service->create($userData);
+        return $createdUser;
     }
 
     /**
@@ -21,9 +22,11 @@ class AuthService
      * @param User $company
      * @param array $companyData
      */
-    public function companyLogin($company, $companyData)
+    public function companyRegiter($company,$service,$companyData)
     {
-        dd('$company');
+        $companyData = $this->beforeSave($companyData);
+        $createdCompany = $service->create($companyData);
+        return $createdCompany;
     }
 
     /**
@@ -32,46 +35,16 @@ class AuthService
      * @param User $festival
      * @param array $festivalData
      */
-    public function festivalLogin($festival, $festivalData)
+    public function festivalRegiter($festival,$service,$festivalData)
     {
-        dd('$festival');
+        $festivalData = $this->beforeSave($festivalData);
+        $createdFestival = $service->create($festivalData);
+        return $createdFestival;
     }
     
-    /**
-     * Attempting User type before login
-     * 
-     * @param User $user
-     * @param array $userData
-     */
-    public function userRegiter($user,$userData)
+    private function beforeSave($data)
     {
-        $userData['password'] = bcrypt($userData['password']);
-        dd($user->attempt($userData));
-        $createdUser = $user->create($userData);
-        if($createdUser)
-            return $user->attempt($createdUser);
-    }
-
-    /**
-     * Attempting Company type before login
-     * 
-     * @param User $company
-     * @param array $companyData
-     */
-    public function companyRegiter($company, $companyData)
-    {
-        dd('$company',$companyData);
-
-    }
-
-    /**
-     * Attempting Festival type before login
-     * 
-     * @param User $festival
-     * @param array $festivalData
-     */
-    public function festivalRegiter($festival, $festivalData)
-    {
-        dd('$festival',$festivalData);
+        $data['password'] = bcrypt($data['password']);
+        return $data;
     }
 }

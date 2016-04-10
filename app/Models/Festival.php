@@ -4,7 +4,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model implements Authenticatable
+class Festival extends Model implements Authenticatable
 {
     use \Illuminate\Auth\Authenticatable;
     
@@ -13,7 +13,7 @@ class Company extends Model implements Authenticatable
      *
      * @var String $table 
      */
-    protected $table = 'companies';
+    protected $table = 'festivals';
     /**
      * The attributes that are mass assignable.
      *
@@ -22,9 +22,9 @@ class Company extends Model implements Authenticatable
     protected $fillable = [
         'username',
         'name',
-        'category_id',
-        'subcategory_id',
         'country_id',
+        'start_time',
+        'end_time',
         'email',
         'password',
     ];

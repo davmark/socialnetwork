@@ -8,6 +8,7 @@
 </ul>
 
 <div class="tab-content">
+    @include('alerts.messages')
     <div id="userRegistrationTab" class="tab-pane fade in active">
         <h3>User</h3>
         @include('auth.forms.userRegisterForm')

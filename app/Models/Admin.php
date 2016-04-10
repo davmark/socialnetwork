@@ -1,10 +1,11 @@
 <?php
-namespace App\Models;
+
+namespace App;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model implements Authenticatable
+class Admin extends Model implements Authenticatable
 {
     use \Illuminate\Auth\Authenticatable;
     
@@ -13,19 +14,26 @@ class Company extends Model implements Authenticatable
      *
      * @var String $table 
      */
-    protected $table = 'companies';
+    protected $table = 'admin';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'username',
-        'name',
-        'category_id',
-        'subcategory_id',
-        'country_id',
+    protected $fillable =
+    [
+        'first_name',
+        'last_name',
         'email',
         'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
     ];
 }

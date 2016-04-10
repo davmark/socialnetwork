@@ -1,9 +1,10 @@
 <?php
 namespace App\Http\Services;
 use App\Http\Services\BaseService;
-use App\User;
 
-class UserService extends BaseService
+use App\Models\Company;
+
+class CompanyService extends BaseService
 {
     private $model;
     /**
@@ -11,7 +12,7 @@ class UserService extends BaseService
      *
      * @return void
      */
-    public function __construct(User $model)
+    public function __construct(Company $model)
     {
         $this->model = $model;
     }
