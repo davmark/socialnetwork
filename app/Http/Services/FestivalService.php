@@ -6,7 +6,6 @@ use App\Models\Festival;
 
 class FestivalService extends BaseService
 {
-    private $model;
     /**
      * Create a new FestivalService service instance.
      *

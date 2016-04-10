@@ -6,7 +6,6 @@ use App\Models\Company;
 
 class CompanyService extends BaseService
 {
-    private $model;
     /**
      * Create a new UserService service instance.
      *

@@ -76,6 +76,8 @@ class AuthController extends Controller
         $registerMethod = $role.'Regiter';
         if($model = $authService->$registerMethod( $this->$role, $service, $request->except('_token','role')));
         {
+            if(isset($model['success']) && !$model['success'])
+                return back ()->withErrors ($model['message']);
             $this->$role->login($model);
             return redirect($role)->with('success','Successfully registered!!!');
         }

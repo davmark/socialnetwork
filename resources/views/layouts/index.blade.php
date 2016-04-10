@@ -16,7 +16,6 @@
                     <li><a href="{{url('auth/logout')}}">Logout</a></li>
                     @endif
                     <li><a href="{{url('auth/login')}}">Login</a></li>
-                    
                     <li><a href="{{url('auth/register')}}">Registration</a></li>
                 </ul>
             </div>

@@ -5,7 +5,6 @@ use App\User;
 
 class UserService extends BaseService
 {
-    private $model;
     /**
      * Create a new UserService service instance.
      *

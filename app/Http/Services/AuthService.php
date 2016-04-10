@@ -11,7 +11,9 @@ class AuthService
      */
     public function userRegiter($user,$service,$userData)
     {
-        $userData = $this->beforeSave($userData);
+        $userData = $service->beforeSave($userData);
+        if(isset($userData['success']) && !$userData['success'])
+            return $userData;
         $createdUser = $service->create($userData);
         return $createdUser;
     }
@@ -24,7 +26,7 @@ class AuthService
      */
     public function companyRegiter($company,$service,$companyData)
     {
-        $companyData = $this->beforeSave($companyData);
+        $companyData = $service->beforeSave($companyData);
         $createdCompany = $service->create($companyData);
         return $createdCompany;
     }
@@ -37,14 +39,9 @@ class AuthService
      */
     public function festivalRegiter($festival,$service,$festivalData)
     {
-        $festivalData = $this->beforeSave($festivalData);
+        $festivalData = $service->beforeSave($festivalData);
         $createdFestival = $service->create($festivalData);
         return $createdFestival;
     }
     
-    private function beforeSave($data)
-    {
-        $data['password'] = bcrypt($data['password']);
-        return $data;
-    }
 }
