@@ -45,7 +45,8 @@ class AuthController extends Controller
      */
     public function getRegister(AuthService $authService)
     {
-        return view('auth/register');
+        $countries = $authService->getCountries();
+        return view('auth/register',['countries'=>$countries]);
     }
 
     /**
