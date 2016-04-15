@@ -13,28 +13,7 @@ class FestivalService extends BaseService
      */
     public function __construct(Festival $model)
     {
-        $this->user = $model;
-    }
-
-    /**
-     * Get user bay email
-     * 
-     * @param String $email
-     * @return Festival|Boolean
-     */
-    public function getByEmail($email)
-    {
-        return $this->user->where('email',$email)->first();
-    }
-    /**
-     * Get user bay email
-     * 
-     * @param String $email
-     * @return Festival|Boolean
-     */
-    public function create($data)
-    {
-        return $this->user->create($data);
+        $this->model = $model;
     }
 }
 

@@ -7,6 +7,6 @@ class FestivalController extends FestivalBaseController
 {
     public function getIndex()
     {
-        return view('comapny/index');
+        return view('festivals/festival/index');
     }
 }

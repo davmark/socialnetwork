@@ -31,7 +31,7 @@ class RegisterRequest extends Request
                     'first_name'    => 'required',
                     'last_name'     => 'required',
                     'occupation'    => 'required',
-                    'country'       => 'required',
+                    'country_id'    => 'required',
                     'email'         => 'required|email|unique:users',
                     'password'      => 'required|confirmed',
                 ];
@@ -40,16 +40,16 @@ class RegisterRequest extends Request
                     'name'          => 'required',
                     'category'      => 'required',
                     'subcategory'   => 'required',
-                    'country'       => 'required',
+                    'country_id'    => 'required',
                     'email'         => 'required|email|unique:companies',
                     'password'      => 'required|confirmed',
                 ];
             if(request()->get('role') === 'festival')
                 return [
                     'name'          => 'required',
-                    'country'       => 'required',
-                    'start_date'    => 'required|date',
-                    'end_date'      => 'required|date',
+                    'country_id'    => 'required',
+                    'start_time'    => 'required',
+                    'end_time'      => 'required',
                     'email'         => 'required|email|unique:festivals',
                     'password'      => 'required|confirmed'
                 ];

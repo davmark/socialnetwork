@@ -10,16 +10,16 @@
                 {!! Form::text('email', NULL, ['class'=>'form-control']) !!}
             </div>
             <div class="form-group{{$errors->has('email') ? ' has-error' : ''}}">
-                {!! Form::label('country', 'Country', ['class'=>'control-label']) !!}
-                {!! Form::select('country', [1,2,3], NULL, ['class'=>'form-control']) !!}
+                {!! Form::label('country_id', 'Country', ['class'=>'control-label']) !!}
+                {!! Form::select('country_id', $countries, NULL, ['class'=>'form-control']) !!}
             </div>
             <div class="form-group{{$errors->has('email') ? ' has-error' : ''}}">
-                {!! Form::label('start_date', 'Start date', ['class'=>'control-label']) !!}
-                {!! Form::text('start_date', NULL, ['class'=>'form-control']) !!}
+                {!! Form::label('start_time', 'Start date', ['class'=>'control-label']) !!}
+                {!! Form::text('start_time', NULL, ['class'=>'form-control']) !!}
             </div>
             <div class="form-group{{$errors->has('email') ? ' has-error' : ''}}">
-                {!! Form::label('end_date', 'End date', ['class'=>'control-label']) !!}
-                {!! Form::text('end_date', NULL, ['class'=>'form-control']) !!}
+                {!! Form::label('end_time', 'End date', ['class'=>'control-label']) !!}
+                {!! Form::text('end_time', NULL, ['class'=>'form-control']) !!}
             </div>
             <div class="form-group {{$errors->has('password') ? ' has-error' : ''}}">
                 {!! Form::label('password', 'Choose a password', ['class'=>'control-label']) !!}

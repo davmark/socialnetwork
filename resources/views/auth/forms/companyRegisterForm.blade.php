@@ -18,8 +18,8 @@
                 {!! Form::select('subcategory', [1,2,3], NULL, ['class'=>'form-control']) !!}
             </div>
             <div class="form-group{{$errors->has('email') ? ' has-error' : ''}}">
-                {!! Form::label('country', 'Country', ['class'=>'control-label']) !!}
-                {!! Form::select('country', [1,2,3], NULL, ['class'=>'form-control']) !!}
+                {!! Form::label('country_id', 'Country', ['class'=>'control-label']) !!}
+                {!! Form::select('country_id', $countries, NULL, ['class'=>'form-control']) !!}
             </div>
             <div class="form-group {{$errors->has('password') ? ' has-error' : ''}}">
                 {!! Form::label('password', 'Choose a password', ['class'=>'control-label']) !!}

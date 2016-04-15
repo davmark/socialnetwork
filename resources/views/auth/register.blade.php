@@ -1,10 +1,11 @@
 @extends('layouts.index')
 
 @section('content')
+@include('site.layouts.menu')
 <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#userRegistrationTab">User registration</a></li>
-    <li><a data-toggle="tab" href="#companyRegistrationTab">Company registration</a></li>
-    <li><a data-toggle="tab" href="#festivalRegistrationTab">Festival registration</a></li>
+    <li class=""><a data-toggle="tab" href="#companyRegistrationTab">Company registration</a></li>
+    <li class=""><a data-toggle="tab" href="#festivalRegistrationTab">Festival registration</a></li>
 </ul>
 
 <div class="tab-content">
@@ -23,6 +24,7 @@
     </div>
 </div>
 @stop
+
 @section('js')
     {!! Html::script('auth/js/register.js') !!}
 @stop

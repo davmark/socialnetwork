@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('occupation')->nullable();
-            $table->string('country')->nullable();
+            $table->integer('country_id')->unsigned()->nullable();
             $table->string('img');
             $table->string('remember_token')->nullable();
             $table->timestamps();

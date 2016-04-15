@@ -7,6 +7,6 @@ class CompanyController extends CompanyBaseController
 {
     public function getIndex()
     {
-        return view('company/index');
+        return view('companies/company/index');
     }
 }

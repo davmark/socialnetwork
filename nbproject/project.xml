@@ -5,5 +5,10 @@
         <data xmlns="http://www.netbeans.org/ns/php-project/1">
             <name>Socialnetwork</name>
         </data>
+        <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>dd</word>
+            <word>endif</word>
+            <word>foreach</word>
+        </spellchecker-wordlist>
     </configuration>
 </project>

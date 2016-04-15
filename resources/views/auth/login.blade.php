@@ -1,6 +1,7 @@
 @extends('layouts.index')
 
 @section('content')
+@include('site.layouts.menu')
     <div class="row">
         <div class="col-lg-6">
             @include('alerts.messages')

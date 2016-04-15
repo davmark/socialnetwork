@@ -28,4 +28,12 @@ class Company extends Model implements Authenticatable
         'email',
         'password',
     ];
+
+    /**
+     * Get the country record associated with the user.
+     */
+    public function country()
+    {
+        return $this->hasOne('App\Models\Country','id','country_id');
+    }
 }

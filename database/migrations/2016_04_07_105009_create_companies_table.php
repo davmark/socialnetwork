@@ -21,6 +21,8 @@ class CreateCompaniesTable extends Migration
             $table->integer('category_id')->unsigned();
             $table->integer('subcategory_id')->unsigned();
             $table->integer('country_id')->unsigned();
+            $table->string('img');
+            $table->string('remember_token')->nullable();
             $table->timestamps();
         });
     }

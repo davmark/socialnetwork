@@ -5,8 +5,13 @@ use App\Http\Controllers\User\UserBaseController;
 
 class UserController extends UserBaseController
 {
+    /**
+     * Show User default age
+     * 
+     * @return view
+     */
     public function getIndex()
     {
-        return view('user/index');
+        return view('users/user/index');
     }
 }

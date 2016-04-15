@@ -43,14 +43,14 @@ class AuthController extends Controller
      * 
      * @return view
      */
-    public function getRegister()
+    public function getRegister(AuthService $authService)
     {
         return view('auth/register');
     }
 
     /**
      * User login by role
-     * 
+     *
      * @return redirect
      */
     public function postLogin(LoginRequest $request, AuthService $authService)
@@ -63,7 +63,7 @@ class AuthController extends Controller
 
     /**
      * Registering user by role
-     * 
+     *
      * @param AuthService $authService
      * @param UserService $userService
      * @return redirect
@@ -91,11 +91,16 @@ class AuthController extends Controller
      * @param UserService $userService
      * @return redirect
      */
-    public function getLogout()
+    public function getLogout($user = false)
     {
-        $this->user->logout();
-        $this->company->logout();
-        $this->festival->logout();
+        if(!$user)
+        {
+            $this->user->logout();
+            $this->company->logout();
+            $this->festival->logout();
+        }
+        else
+            $this->$user->logout();
         return redirect('auth/login');
     }
 }

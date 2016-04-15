@@ -1,5 +1,4 @@
 <?php
-
 /**
  *  Site route part
  */
@@ -17,7 +16,10 @@ Route::group([
     'prefix'     => 'user',
     'namespace'  => 'User',
 ], function () {
-    Route::controller(''   , 'UserController');
+    Route::controller('settings'    , 'SettingsController');
+    Route::controller('friends'     , 'FriendsController');
+    Route::controller('search'     , 'SearchController');
+    Route::controller(''            , 'UserController');
 });
 
 /**
@@ -28,7 +30,8 @@ Route::group([
     'prefix'     => 'company',
     'namespace'  => 'Company',
 ], function () {
-    Route::controller(''   , 'CompanyController');
+    Route::controller('settings'    , 'SettingsController');
+    Route::controller(''            , 'CompanyController');
 });
 
 /**
@@ -39,5 +42,6 @@ Route::group([
     'prefix'     => 'festival',
     'namespace'  => 'Festival',
 ], function () {
-    Route::controller(''   , 'FestivalController');
+    Route::controller('settings'    , 'SettingsController');
+    Route::controller(''            , 'FestivalController');
 });
