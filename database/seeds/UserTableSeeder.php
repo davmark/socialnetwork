@@ -12,20 +12,13 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('users')->whereId(1)->delete();
         DB::table('users')->insert([
-            'id'         => 2,
-            'username'   => 'test',
+            'id'         => 1,
+            'username'   => 'testtest',
             'first_name' => 'Test',
             'last_name'  => 'John',
             'email'      => 'test@test.com',
-            'password'   =>  bcrypt('123456'),
-        ]);
-        DB::table('users')->insert([
-            'id'         => 3,
-            'username'   => 'test1',
-            'first_name' => 'Test1',
-            'last_name'  => 'Mike',
-            'email'      => 'test1@test.com',
             'password'   =>  bcrypt('123456'),
         ]);
     }

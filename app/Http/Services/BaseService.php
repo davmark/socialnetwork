@@ -18,7 +18,7 @@ class BaseService
         else
             $data['username'] = strtolower($data['name']);
         $data['password'] = bcrypt($data['password']);
-        if($this->getByUsername($data['username']))
+        if(!$this->getUserByData(['username'=>$data['username']])->isEmpty())
             return ['success'=>false,'message'=>$data['first_name'].' '.$data['last_name'].' user already exist'];
         return $data;
     }
