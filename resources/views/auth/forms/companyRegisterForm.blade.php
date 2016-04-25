@@ -31,7 +31,7 @@
             </div>
             {!! Form::hidden('role', 'company') !!}
             <div class="form-group">
-                {!! Form::submit('Sign up',['class'=>'btn btn-default']) !!}
+                {!! Form::button('Regitering',['type'=>'submit','class'=>'btn btn-default btn-submit']) !!}
             </div>
         {!! Form::close() !!}
     </div>

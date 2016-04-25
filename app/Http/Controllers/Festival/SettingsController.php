@@ -37,7 +37,7 @@ class SettingsController extends FestivalBaseController
             return back()->withErrors($validator);
         // End Validation
         
-        if($festivalService->updateById($this->user->id, $request))
+        if($festivalService->updateById($this->user, $request))
             return back()->with('success','Successfuly updated');
         return back()->withErrors('Something wet wrong.Can not updtae info');
     }
@@ -61,5 +61,21 @@ class SettingsController extends FestivalBaseController
         if($festivalService->changePasswordById($this->user->id, request()->get('password')))
             return back()->with('success','Successfuly changed');
         return back()->withErrors('Something wet wrong.Can not change password');
+    }
+    
+           
+    /**
+     * Show User default age
+     * 
+     * @return view
+     */
+    public function postCropAvatar( FestivalService $userService )
+    {
+        if(request()->ajax())
+        {
+            if(request()->file('avatar_file'))
+                return $userService->crop($this->user, request()->file('avatar_file'), json_decode(request()->get('avatar_data')));
+        }
+        return back()->withErrors('This method is depricated');
     }
 }

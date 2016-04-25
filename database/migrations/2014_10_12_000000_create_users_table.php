@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('last_name')->nullable();
             $table->string('occupation')->nullable();
             $table->integer('country_id')->unsigned()->nullable();
-            $table->string('img');
+            $table->string('avatar');
             $table->string('remember_token')->nullable();
             $table->timestamps();
         });

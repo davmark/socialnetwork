@@ -19,7 +19,7 @@ class CreateAdminTable extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('location')->nullable();
-            $table->string('img');
+            $table->string('avatar');
             $table->string('remember_token')->nullable();
             $table->timestamps();
         });

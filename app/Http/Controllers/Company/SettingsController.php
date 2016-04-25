@@ -31,13 +31,13 @@ class SettingsController extends CompanyBaseController
                 'email'       => 'required|email',
                 'category_id' => 'required',
                 'subcategory' => 'required',
-                'country'     => 'required',
+                'country_id'  => 'required',
             ]);
         if($validator->fails())
             return back()->withErrors($validator);
         // End Validation
         
-        if($companyService->updateById($this->user->id, $request))
+        if($companyService->updateById($this->user, $request))
             return back()->with('success','Successfuly updated');
         return back()->withErrors('Something wet wrong.Can not updtae info');
     }
@@ -61,5 +61,20 @@ class SettingsController extends CompanyBaseController
         if($companyService->changePasswordById($this->user->id, request()->get('password')))
             return back()->with('success','Successfuly changed');
         return back()->withErrors('Something wet wrong.Can not change password');
+    }
+        
+    /**
+     * Show User default age
+     * 
+     * @return view
+     */
+    public function postCropAvatar( CompanyService $userService )
+    {
+        if(request()->ajax())
+        {
+            if(request()->file('avatar_file'))
+                return $userService->crop($this->user, request()->file('avatar_file'), json_decode(request()->get('avatar_data')));
+        }
+        return back()->withErrors('This method is depricated');
     }
 }

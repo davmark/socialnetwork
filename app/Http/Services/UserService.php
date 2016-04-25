@@ -10,9 +10,10 @@ class UserService extends BaseService
      *
      * @return void
      */
-    public function __construct(User $model)
+    public function __construct( User $model )
     {
         $this->model = $model;
+        $this->path = 'users/imgs/';
     }
 }
 

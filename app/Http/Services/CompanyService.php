@@ -11,9 +11,9 @@ class CompanyService extends BaseService
      *
      * @return void
      */
-    public function __construct(Company $model)
+    public function __construct( Company $model )
     {
         $this->model = $model;
+        $this->path = 'companies/imgs/';
     }
 }
-

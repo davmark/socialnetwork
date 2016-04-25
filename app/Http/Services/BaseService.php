@@ -1,9 +1,12 @@
 <?php
 namespace App\Http\Services;
 
+use Illuminate\Http\UploadedFile;
+use File,Image;
+
 class BaseService
 {
-    public $model;
+    public $model,$path;
 
     /**
      * Before saving into table
@@ -89,15 +92,106 @@ class BaseService
      * @param array $data
      * @return bollean
      */
-    public function updateById($userId, $data)
+    public function updateById( $user, $data )
     {
+        if(isset($data['file']))
+        {
+            //Delete file if exist
+            File::delete($this->path.$user->avatar);
+            //Upload new file
+            if($file = $this->uploadFile ($data['file'], $this->path))
+                $data['avatar'] = $file['unique'];
+        }
+
         if(isset($data['first_name']))
             $data['username'] = strtolower($data['first_name']).strtolower($data['last_name']);
         else
             $data['username'] = strtolower($data['name']);
         return $this->model
-                ->find($userId)
-                ->update($data);
+                ->find( $user->id )
+                ->update( $data );
+    }
+
+    /**
+     * File uploading
+     *
+     * @param File $file
+     * @param string $path
+     * 
+     * @return boolean
+     */
+    public function crop($user, UploadedFile $file, $avatar_data )
+    {
+        if($user->avatar)
+            File::delete($this->path.$user->avatar);
+
+        $fileName = $this->getFileNames( $file );
+        
+        $fileSaved = Image::make($file)
+                        ->rotate($avatar_data->rotate)
+                        ->crop(intval($avatar_data->width), intval($avatar_data->height), intval($avatar_data->x), intval($avatar_data->y))
+                        ->save($this->path.$fileName['unique']);
+        if($fileSaved)
+         {
+            $update = $this->model
+                        ->find( $user->id )
+                        ->update( ['avatar'=>$fileName['unique']] );
+            if(!$update)
+            {
+                File::delete($this->path.$fileName['unique']);
+                return  array
+                        (
+                            'state'   => 200,
+                            'message' => 'Can`t update user avatar'
+                        );
+            }
+            return  array
+                    (
+                        'state'   => 200,
+                        'result'  => url('').'/'.$this->path.$fileName['unique']
+                    );
+        }
+        return  array
+                    (
+                        'state'   => 200,
+                        'message' => 'Can`t save cropped image'
+                    );
+    }
+
+    /**
+     * File uploading
+     *
+     * @param File $file
+     * @param string $path
+     * 
+     * @return boolean
+     */
+    private function uploadFile( UploadedFile $file, $path )
+    {
+        $fileName = $this->getFileNames( $file );
+        $fileSaved = Image::make($file)
+                        ->resize(256)
+                        ->save($path.$fileName['unique']);
+        if($fileSaved)
+            return $fileName;
+        return false;
+    }
+
+    /**
+     * Generate unique file name
+     *
+     * @param File $file
+     * @return array
+     */
+    private function getFileNames( UploadedFile $file )
+    {
+        $extantion = $file->getClientOriginalExtension();
+        $original = $file->getClientOriginalName();
+        $unique   = uniqid().'.'.$extantion;
+        return [
+            'original' => $original,
+            'unique'   => $unique
+        ];
     }
 
     /**

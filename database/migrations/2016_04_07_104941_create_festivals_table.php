@@ -21,7 +21,7 @@ class CreateFestivalsTable extends Migration
             $table->integer('country_id')->unsigned();
             $table->dateTime('start_time');
             $table->dateTime('end_time');
-            $table->string('img');
+            $table->string('avatar');
             $table->string('remember_token')->nullable();
             $table->timestamps();
         });

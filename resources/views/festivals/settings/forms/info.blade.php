@@ -1,4 +1,19 @@
-{!! Form::model($user,['url'=>'festival/settings/update-info','method'=>'POST']) !!}
+<div class="form-group">
+    @include('layouts/cropper/cropper',['action'=>url('festival/settings/crop-avatar'),'avatar'=>($user->avatar)? url('').'/festivals/imgs/'.$user->avatar : url('').'/main/imgs/festival-default-avatar.png'])
+</div>
+
+
+{!! Form::model($user,['url'=>'festival/settings/update-info','method'=>'POST','files'=>true]) !!}
+<!--    <div class="form-group">
+        <div>
+            <img src="@if($user->avatar) {{url('')}}/festivals/imgs/{{$user->avatar}} @else {{url('')}}/main/imgs/festival-default-avatar.png @endif" class="img-thumbnail img-responsive avatar__default" />
+        </div>
+
+        <div>
+            {!! Form::label('file', 'Select file', ['class'=>'control-label']) !!}
+            {!! Form::file('file', ['class'=>'form-control logo__file__input']) !!}
+        </div>
+    </div>-->
     <div class="form-group{{$errors->has('email') ? ' has-error' : ''}}">
         {!! Form::label('name', 'Name', ['class'=>'control-label']) !!}
         {!! Form::text('name', NULL, ['class'=>'form-control']) !!}

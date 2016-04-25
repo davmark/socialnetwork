@@ -76,5 +76,5 @@
 @stop
 
 @section('js')
-
+    {!! Html::script('users/js/friends/main.js') !!}
 @stop

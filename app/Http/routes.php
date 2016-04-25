@@ -1,4 +1,5 @@
 <?php
+
 /**
  *  Site route part
  */
@@ -17,6 +18,7 @@ Route::group([
     'namespace'  => 'User',
 ], function () {
     Route::controller('settings'    , 'SettingsController');
+    Route::controller('timeline'    , 'TimelineController');
     Route::controller('friends'     , 'FriendsController');
     Route::controller('search'     , 'SearchController');
     Route::controller(''            , 'UserController');

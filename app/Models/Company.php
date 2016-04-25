@@ -22,6 +22,7 @@ class Company extends Model implements Authenticatable
     protected $fillable = [
         'username',
         'name',
+        'avatar',
         'category_id',
         'subcategory_id',
         'country_id',

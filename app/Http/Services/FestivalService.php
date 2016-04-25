@@ -14,6 +14,7 @@ class FestivalService extends BaseService
     public function __construct(Festival $model)
     {
         $this->model = $model;
+         $this->path = 'festivals/imgs/';
     }
 }
 

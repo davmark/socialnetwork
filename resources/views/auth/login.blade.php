@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('content')
-@include('site.layouts.menu')
+    @include('site.layouts.menu')
     <div class="row">
         <div class="col-lg-6">
             @include('alerts.messages')
@@ -23,7 +23,7 @@
                     </label>
                 </div>
                 <div class="form-group">
-                    {!! Form::submit('Sign in',["class" => "btn btn-default"]) !!}
+                    {!! Form::button('Sign in',['type'=>'submit','class'=>'btn btn-default btn-submit']) !!}
                 </div>
             {!! Form::close() !!}
         </div>

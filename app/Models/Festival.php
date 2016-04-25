@@ -22,6 +22,7 @@ class Festival extends Model implements Authenticatable
     protected $fillable = [
         'username',
         'name',
+        'avatar',
         'country_id',
         'start_time',
         'end_time',

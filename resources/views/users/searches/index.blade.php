@@ -30,5 +30,6 @@
 @stop
 
 @section('js')
-    {!! Html::script('users/search/main.js') !!}
+    {!! Html::script('users/js/search/main.js') !!}
+    {!! Html::script('users/js/friends/main.js') !!}
 @stop

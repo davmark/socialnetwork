@@ -1,7 +1,8 @@
 @extends('layouts.index')
 
 @section('css')
-    
+    {!! Html::style('main/cropper/css/cropper.min.css') !!}
+    {!! Html::style('main/cropper/css/main.css') !!}
 @stop
 
 @section('content')
@@ -18,5 +19,7 @@
 @stop
 
 @section('js')
-    
+    {!! Html::script('main/cropper/js/cropper.min.js') !!}
+    {!! Html::script('main/cropper/js/main.js') !!}
+    {!! Html::script('companies/js/settings/main.js') !!}
 @stop
