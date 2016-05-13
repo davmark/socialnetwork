@@ -4,26 +4,43 @@ trait CRUDTrait
 {
     
     /**
+     * Find All
+     * 
+     * @param int $id
+     * @return Model
+     */
+    public function findAll($user)
+    {
+        return $this->model
+                ->where('user_id',$user->id)
+                ->get();
+    }
+ 
+    /**
+     * Find by id
+     * 
+     * @param int $id
+     * @return Model
+     */
+    public function findByPk($id, $user)
+    {
+        return $this->model
+                ->where('user_id',$user->id)
+                ->whereId($id)
+                ->first();
+    }
+
+    /**
      * Insert data into table
      * 
      * @param array $data
      * @return Model
      */
-    public function create(array $data)
+    public function create( array $data )
     {
         return $this->model->create($data);
     }
-    
-    /**
-     * Get All from table
-     * 
-     * @return Model
-     */
-    public function read()
-    {
-        return $this->model->all();
-    }
-    
+
     /**
      * Update by id
      * 
@@ -31,9 +48,12 @@ trait CRUDTrait
      * @param array $data
      * @return Boolean
      */
-    public function update($id, array $data)
+    public function update( $id, array $data, $user )
     {
-        return $this->model->whereId($id)->update($data);
+        return $this->model
+                ->where('user_id',$user->id)
+                ->whereId($id)
+                ->update($data);
     }
 
     /**
@@ -42,8 +62,11 @@ trait CRUDTrait
      * @param int $id
      * @return Boolean
      */
-    public function delete($id)
+    public function delete($id, $user)
     {
-        return $this->model->whereId($id)->delete();
+        return $this->model
+                ->where('user_id',$user->id)
+                ->whereId($id)
+                ->delete();
     }
 }

@@ -1,5 +1,17 @@
 <?php
 
+Route::get('fire', function ()
+{
+    Event::fire(new App\Events\Some1Event([1,2,3]));
+    return "event fired";
+});
+
+Route::get('test', function ()
+{
+    // this checks for the event
+    return view('welcome');
+});
+
 /**
  *  Site route part
  */
@@ -18,9 +30,10 @@ Route::group([
     'namespace'  => 'User',
 ], function () {
     Route::controller('settings'    , 'SettingsController');
+    Route::controller('status'      , 'StatusController');
     Route::controller('timeline'    , 'TimelineController');
     Route::controller('friends'     , 'FriendsController');
-    Route::controller('search'     , 'SearchController');
+    Route::controller('search'      , 'SearchController');
     Route::controller(''            , 'UserController');
 });
 

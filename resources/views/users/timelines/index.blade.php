@@ -12,14 +12,15 @@
             @include('users/layouts/timelinemenu')
         </div>
         <div class="col-md-6">
-            <h3>Create status</h3>
-            @include('users/timelines/forms/status')
-        </div>
-        
-        <div class="">
             <h3>My Status</h3>
             @if($lastStatus)
-                <p>{{$lastStatus->text}}</p>
+            <div>
+                <div class="col-md-6">{{$lastStatus->text}}</div>
+                <div class="col-md-6">
+                    <p>Reply status</p>
+                    @include('users/statuses/forms/reply',['status'=>$lastStatus,'reply'=>false])
+                </div>
+            </div>
             @else
                 <p>Not yet status</p>
             @endif
@@ -28,5 +29,5 @@
 @stop
 
 @section('js')
-    
+
 @stop

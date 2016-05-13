@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Services\User;
-use App\Models\Statuse;
-use App\Models\StatuseReply;
+use App\Models\Status;
+use App\Models\StatusReply;
 
 class TimelineService
 {
@@ -9,20 +9,20 @@ class TimelineService
     /**
      * Private property for Friend model
      * 
-     * @var $status,$statuseReply
+     * @var $status,$statusReply
      */
     private $status, $statusReply,$model;
 
     /**
      * Create a new TimelineService service instance.
      * 
-     * @param Statuse $status
+     * @param Status $status
      * @return void
      */
-    public function __construct( Statuse $status, StatuseReply $statuseReply )
+    public function __construct( Status $status, StatusReply $statusReply )
     {
         $this->status       = $status;
-        $this->statuseReply = $statuseReply;
+        $this->statusReply  = $statusReply;
     }
 
     /**

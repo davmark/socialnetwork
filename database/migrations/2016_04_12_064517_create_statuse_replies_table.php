@@ -12,7 +12,7 @@ class CreateStatuseRepliesTable extends Migration
      */
     public function up()
     {
-        Schema::create('statuse_replies', function (Blueprint $table) {
+        Schema::create('status_replies', function (Blueprint $table) {
             $table->increments('id');
             $table->text('text');
             $table->string('file')->nullable();
@@ -36,6 +36,6 @@ class CreateStatuseRepliesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('statuse_replies');
+        Schema::drop('status_replies');
     }
 }

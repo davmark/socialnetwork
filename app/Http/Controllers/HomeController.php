@@ -12,12 +12,13 @@ class HomeController extends Controller
      */
     public function getIndex()
     {
+        //\Event::fire('event.name',[11111111]);
         return view('site/home.index');
     }
-    
+
     /**
      * Show site about page
-     * 
+     *
      * @return view
      */
     public function getAbout()
@@ -27,11 +28,12 @@ class HomeController extends Controller
 
     /**
      * Show site about page
-     * 
+     *
      * @return view
      */
     public function getContact()
     {
         return dd(22222);
     }
+
 }
