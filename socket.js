@@ -9,7 +9,7 @@ var redis = require('redis');
 
 io.on('connection', function(socket)
 {
-    var redisClient = redis.createClient();
+    //var redisClient = redis.createClient();
 
     socket.on('join room',function(name)
     {
