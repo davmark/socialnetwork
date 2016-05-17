@@ -13,7 +13,7 @@ class FriendsController extends UserBaseController
      */
     public function getIndex( FriendService $friendService )
     {
-        return view('users/friends/index',['firendsList'=>$this->user->firendsList()]);
+        return view('users/friends/index',['firendsList' => $this->user->firendsList()]);
     }
 
     /**

@@ -6,6 +6,7 @@
         <li><a href="{{url('user/settings')}}">Settings</a></li>
         <li><a href="{{url('user/search')}}">Search</a></li>
         <li><a href="{{url('user/friends')}}">Friends</a></li>
+        <li><a href="{{url('user/chat')}}">Chat</a></li>
         @if(\Auth::guard('user')->check())
         <li><a href="{{url('auth/logout/user')}}">Logout</a></li>
         @endif

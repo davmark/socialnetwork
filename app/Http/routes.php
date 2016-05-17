@@ -2,14 +2,8 @@
 
 Route::get('fire', function ()
 {
-    Event::fire(new App\Events\Some1Event([1,2,3]));
+    Event::fire(new App\Events\PodcastWasPurchased([1,2,3,4]));
     return "event fired";
-});
-
-Route::get('test', function ()
-{
-    // this checks for the event
-    return view('welcome');
 });
 
 /**
@@ -33,6 +27,7 @@ Route::group([
     Route::controller('status'      , 'StatusController');
     Route::controller('timeline'    , 'TimelineController');
     Route::controller('friends'     , 'FriendsController');
+    Route::controller('chat'        , 'ChatController');
     Route::controller('search'      , 'SearchController');
     Route::controller(''            , 'UserController');
 });

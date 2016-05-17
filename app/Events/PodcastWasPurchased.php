@@ -2,35 +2,34 @@
 
 namespace App\Events;
 
-use App\Podcast;
 use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class Some1Event extends Event
+class PodcastWasPurchased extends Event
 {
-    use SerializesModels;
+    public $data, $user;
 
-    public $data;
+    use SerializesModels;
 
     /**
      * Create a new event instance.
      *
-     * @param  Podcast  $podcast
      * @return void
      */
-    public function __construct(array $data)
+    public function __construct( array $data )
     {
         $this->data = $data;
+        $this->user = 1111;
     }
-    
-     /**
+
+    /**
      * Get the channels the event should be broadcast on.
      *
      * @return array
      */
     public function broadcastOn()
     {
-        $this->data['aaa'] = 2222222;
-        dd($this->data);
+        return $this->user;
     }
 }
